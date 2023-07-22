@@ -1,7 +1,7 @@
 ﻿using Quartz;
 using Quartz.Impl.Matchers;
 
-namespace AutoGnome.Services;
+namespace AutoGnome;
 
 public class ScriptLauncher : IHostedService
 {
@@ -20,7 +20,7 @@ public class ScriptLauncher : IHostedService
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        _workspacePath = _config.GetValue<string>("workspace", ".")!;
+        _workspacePath = _config.GetValue("workspace", ".")!;
         _watcher = new FileSystemWatcher(_workspacePath);
 
         _watcher.NotifyFilter = NotifyFilters.Attributes
@@ -103,8 +103,8 @@ public class ScriptLauncher : IHostedService
 
     private async Task ScheduleScriptJob(string fullPath, string oldFullPath, CancellationToken ct = default)
     {
-        var group = fullPath;
-        var oldGroup = oldFullPath;
+        var group = Path.GetRelativePath(_workspacePath, fullPath);
+        var oldGroup = Path.GetRelativePath(_workspacePath, oldFullPath);
 
         var filename = Path.GetFileName(fullPath);
         var job = JobBuilder.Create<ScriptJob>()

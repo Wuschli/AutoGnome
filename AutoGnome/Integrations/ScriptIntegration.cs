@@ -1,6 +1,4 @@
-﻿using AutoGnome.Services;
-
-namespace AutoGnome.Integrations;
+﻿namespace AutoGnome.Integrations;
 
 public abstract class ScriptIntegration
 {
