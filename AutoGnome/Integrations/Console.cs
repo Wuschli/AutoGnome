@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-
-namespace AutoGnome.Integrations;
+﻿namespace AutoGnome.Integrations;
 
 public class Console : ScriptIntegration
 {

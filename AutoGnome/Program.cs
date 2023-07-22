@@ -1,13 +1,9 @@
-﻿using AutoGnome;
-using AutoGnome.Services;
+using AutoGnome;
 using AutoGnome.Integrations;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using AutoGnome.Services;
 using Quartz;
 
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddYamlFile("config.yaml", optional: false);
 
@@ -26,8 +22,11 @@ builder.Services.AddQuartzHostedService(opts =>
 builder.Services.AddAllImplementations<ScriptIntegration>(new[] { typeof(ScriptIntegration).Assembly });
 builder.Services.AddHostedService<ScriptLauncher>();
 
+
 if (builder.Environment.IsDevelopment())
     builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
-var host = builder.Build();
-await host.RunAsync();
+var app = builder.Build();
+
+
+app.Run();

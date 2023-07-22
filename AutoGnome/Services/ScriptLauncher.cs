@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Quartz;
+﻿using Quartz;
 using Quartz.Impl.Matchers;
 
 namespace AutoGnome.Services;

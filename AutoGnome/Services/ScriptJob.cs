@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using Jint;
 using Jint.Runtime;
-using Microsoft.Extensions.Logging;
 using Quartz;
 
 namespace AutoGnome.Services;
